@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <menuitem id="app" name="Estate" sequence="0">
+        <menuitem id="test_first_level_menu" name="First Level">
+            <menuitem id="th_estate_action" action="estate_action"/>
+            <menuitem id="th_estate_type_action" action="estate_type_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>
