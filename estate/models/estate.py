@@ -25,4 +25,21 @@ class TestModel(models.Model):
     active = fields.Boolean(default=True)
     state = fields.Selection(selection=selection, defualt='new')
     property_type_id = fields.Many2one('estate.property.type')
+    user_id = fields.Many2one('res.users', 'Người bán', default=lambda self: self.env.user)
+    partner_ids = fields.One2many('res.partner', 'th_estate_id', string='Người mua')
 
+    def action_offer_received(self):
+        for rec in self:
+            rec.state = 'offer_received'
+
+    def action_offer_accepted(self):
+        for rec in self:
+            rec.state = 'offer_accepted'
+
+    def action_sold(self):
+        for rec in self:
+            rec.state = 'sold'
+
+    def action_canceled(self):
+        for rec in self:
+            rec.state = 'canceled'

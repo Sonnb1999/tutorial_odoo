@@ -10,13 +10,13 @@
                 <field name="date_availability"/>
                 <field name="expected_price"/>
                 <field name="selling_price" readonly="1"/>
-                <field name="bedrooms"/>
-                <field name="living_area"/>
-                <field name="facades"/>
-                <field name="garage"/>
-                <field name="garden"/>
-                <field name="garden_area"/>
-                <field name="garden_orientation"/>
+                <field name="bedrooms" optional="hide"/>
+                <field name="living_area" optional="hide"/>
+                <field name="facades" optional="hide"/>
+                <field name="garage" optional="hide"/>
+                <field name="garden" optional="hide"/>
+                <field name="garden_area" optional="hide"/>
+                <field name="garden_orientation" optional="hide"/>
             </tree>
         </field>
     </record>
@@ -26,13 +26,23 @@
         <field name="model">th.estate</field>
         <field name="arch" type="xml">
             <form string="">
+                <header>
+                    <button name="action_offer_received" string="Received" type="object" class="oe_highlight"/>
+                    <button name="action_offer_accepted" string="Accepted" type="object" class="oe_highlight"/>
+                    <button name="action_sold" string="Sold" type="object" class="oe_highlight"/>
+                    <button name="action_canceled" string="Cancel" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" class="o_field_statusbar" options="{'clickable': '1'}"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
                             <field name="description"/>
-                            <field name="state"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
                             <field name="property_type_id"/>
+                            <field name="state"/>
                         </group>
                     </group>
                     <notebook>
@@ -50,6 +60,14 @@
                                 <field name="garden_area"/>
                                 <field name="garden_orientation"/>
                             </group>
+                        </page>
+                        <page string="Người mua">
+                            <field name="partner_ids">
+                                <tree editable="top">
+                                    <field name="id" />
+                                    <field name="name" />
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
